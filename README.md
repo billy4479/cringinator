@@ -5,6 +5,13 @@ This is a program that takes a string from stdin and returns it to stdout with a
 ## Example
 
 ```bash
-$ echo "This is a test" | ./cringinator
+echo "This is a test" | ./cringinator
+ThIs iS A TeSt
+```
+
+Or
+
+```bash
+./cringinator "this is a test"
 ThIs iS A TeSt
 ```

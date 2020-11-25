@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -32,10 +33,22 @@ func (c *cringeWriter) Write(b []byte) (n int, err error) {
 }
 
 func main() {
-	in := bufio.NewReader(os.Stdin)
+	args := os.Args[1:]
+
 	c := newCringer(os.Stdout)
-	_, err := io.Copy(c, in)
-	checkErr(err)
+	if len(args) > 0 {
+		in := ""
+		for _, v := range args {
+			in += v + " "
+		}
+		_, err := io.Copy(c, strings.NewReader(in))
+		checkErr(err)
+		fmt.Println()
+	} else {
+		in := bufio.NewReader(os.Stdin)
+		_, err := io.Copy(c, in)
+		checkErr(err)
+	}
 }
 
 func checkErr(err error) {
